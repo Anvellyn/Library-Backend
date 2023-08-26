@@ -2,9 +2,9 @@ package com.example.Library.borrowings;
 
 import com.example.Library.books.Book;
 import com.example.Library.clients.Client;
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity

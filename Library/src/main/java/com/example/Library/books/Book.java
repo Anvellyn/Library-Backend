@@ -1,9 +1,10 @@
 package com.example.Library.books;
 
 import com.example.Library.authors.Author;
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -21,6 +22,5 @@ public class Book {
     @ManyToOne
     private Author author;
     private String genre;
-    private LocalDate publicationDate;
     private boolean isBorrowed;
 }
