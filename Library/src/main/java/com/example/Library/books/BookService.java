@@ -24,6 +24,9 @@ public class BookService {
     public List<Book> getBooks (){
         return bookRepository.findAll();
     }
+    public List<Book> getAvailableBooks (){
+        return bookRepository.findByIsBorrowedFalse();
+    }
 
     public Book getBookById(long id) {
         return bookRepository.findById(id).orElseThrow(RuntimeException::new);
@@ -33,7 +36,7 @@ public class BookService {
         Book client = bookRepository.findById(id).orElseThrow(RuntimeException::new);
         bookRepository.delete(client);
     }
-    public Book getBookByName(String title) {
+    public Book getBookByTitle(String title) {
         return bookRepository.findByTitle(title).orElseThrow(RuntimeException::new);
     }
 

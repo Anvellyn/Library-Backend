@@ -31,7 +31,7 @@ public class ClientController {
     }
 
     @PostMapping("/register")
-    private Client registerUser(@RequestBody Client client){
+    public Client registerUser(@RequestBody Client client){
         return clientService.addClient(client);
     }
 }

@@ -10,14 +10,19 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins = "http://localhost:5137")
+@CrossOrigin
 @RequestMapping(path = "api/v1/book")
 public class BookController {
     private final BookService bookService;
 
     @GetMapping("/all")
     public List<Book> getBook() {
-        return bookService.getBooks();
+        return bookService.getAvailableBooks();
+    }
+
+    @GetMapping("/available")
+    public List<Book> getAvailableBooks() {
+        return bookService.getAvailableBooks();
     }
 
     @GetMapping("/{id}")
@@ -32,13 +37,8 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    private Book addBook(@RequestBody Book book){
+    public Book addBook(@RequestBody Book book){
         return bookService.addBook(book);
-    }
-
-    @GetMapping("/{title}")
-    public Book getBookByTitle(@PathVariable String title) {
-        return bookService.getBookByName(title);
     }
 
     @GetMapping("/getByAuthor")

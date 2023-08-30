@@ -2,6 +2,7 @@ package com.example.Library.borrowings;
 
 import com.example.Library.books.Book;
 import com.example.Library.clients.Client;
+import com.example.Library.clients.ClientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "api/v1/borrow")
+@CrossOrigin
 public class BorrowingController {
     private final BorrowingService borrowingService;
 
@@ -37,7 +39,7 @@ public class BorrowingController {
     }
 
     @PostMapping("/add")
-    private Borrowing addBorrowing(@RequestBody Borrowing borrowing, @RequestBody Book book){
-        return borrowingService.addBorrow(borrowing, book);
+    public Borrowing addBorrowing(@RequestBody String title){
+        return borrowingService.addBorrow(title);
     }
 }

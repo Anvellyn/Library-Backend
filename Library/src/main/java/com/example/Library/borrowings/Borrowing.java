@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Builder
@@ -22,6 +23,12 @@ public class Borrowing {
     private Book book;
     @ManyToOne
     private Client client;
-    LocalDate dateOfStart;
-    LocalDate dateOfEnd;
+    LocalDate dateOfStart = LocalDate.now();
+    LocalDate dateOfEnd = dateOfStart.plus(2, ChronoUnit.WEEKS);
+    public Borrowing(Book book, Client client) {
+        this.book = book;
+        this.client = client;
+        this.dateOfStart = LocalDate.now();
+        this.dateOfEnd = dateOfStart.plus(2, ChronoUnit.WEEKS);
+    }
 }
