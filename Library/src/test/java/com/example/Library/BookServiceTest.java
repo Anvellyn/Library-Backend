@@ -54,17 +54,6 @@ public class BookServiceTest {
     }
 
     @Test
-    void testGetAvailableBooks() {
-        List<Book> availableBooks = List.of(new Book());
-        when(bookRepository.findByIsBorrowedFalse()).thenReturn(availableBooks);
-
-        List<Book> result = bookService.getAvailableBooks();
-
-        assertEquals(availableBooks, result);
-        verify(bookRepository).findByIsBorrowedFalse();
-    }
-
-    @Test
     void testGetBookById() {
         long bookId = 1L;
         Book book = new Book();

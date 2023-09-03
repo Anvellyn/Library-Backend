@@ -39,7 +39,9 @@ public class BorrowingController {
     }
 
     @PostMapping("/add")
-    public Borrowing addBorrowing(@RequestBody String title){
-        return borrowingService.addBorrow(title);
+    public Borrowing addBorrowing(@RequestBody long id){
+        return borrowingService.addBorrow(id);
     }
+
+
 }

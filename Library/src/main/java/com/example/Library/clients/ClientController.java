@@ -24,6 +24,11 @@ public class ClientController {
         return clientService.getClientById(id);
     }
 
+    @GetMapping("/logged-user")
+    public Client getLoggedUserPrincipal() {
+        return clientService.getLoggedUserPrincipal();
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity removeClientById(@PathVariable long id) {
         clientService.removeClientById(id);

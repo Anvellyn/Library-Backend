@@ -19,11 +19,11 @@ public class BorrowingService {
     private ClientService clientService;
 
 
-    public Borrowing addBorrow(String title) {
-        Book book = bookService.getBookByTitle(title);
+    public Borrowing addBorrow(long id) {
+        Book book = bookService.getBookById(id);
         Client client = clientService.getLoggedUserPrincipal();
-        if(!book.isBorrowed()) {
-            book.setBorrowed(true);
+        if(book.getAmount() > 0) {
+            book.setAmount(book.getAmount() - 1);
             return borrowingRepository.save(new Borrowing(book, client));
         }
         return null;

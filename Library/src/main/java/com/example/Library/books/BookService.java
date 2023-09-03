@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,15 +18,24 @@ public class BookService {
     public Book addBook(Book book) {
         Author author = book.getAuthor();
         Author existingAuthor = authorService.getOrCreateAuthor(author);
-        book.setAuthor(existingAuthor);
-        return bookRepository.save(book);
+
+        Optional<Book> existingBook = bookRepository.findByTitleAndAuthor(book.getTitle(), existingAuthor);
+
+        if (existingBook.isPresent()) {
+            Book storedBook = existingBook.get();
+            storedBook.setAmount(storedBook.getAmount() + book.getAmount());
+            return bookRepository.save(storedBook);
+        } else {
+            book.setAuthor(existingAuthor);
+            return bookRepository.save(book);
+        }
     }
 
     public List<Book> getBooks (){
         return bookRepository.findAll();
     }
     public List<Book> getAvailableBooks (){
-        return bookRepository.findByIsBorrowedFalse();
+        return bookRepository.findByAmountGreaterThan(0);
     }
 
     public Book getBookById(long id) {

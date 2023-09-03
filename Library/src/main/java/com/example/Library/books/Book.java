@@ -22,5 +22,5 @@ public class Book {
     @ManyToOne
     private Author author;
     private String genre;
-    private boolean isBorrowed;
+    private int amount;
 }

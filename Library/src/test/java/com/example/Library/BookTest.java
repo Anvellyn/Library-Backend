@@ -14,12 +14,10 @@ public class BookTest {
         book.setTitle("warhammer 40k");
         book.setAuthor(new Author());
         book.setGenre("fiction");
-        book.setBorrowed(true);
 
         assertEquals(1L, book.getId());
         assertEquals("warhammer 40k", book.getTitle());
         assertNotNull(book.getAuthor());
         assertEquals("fiction", book.getGenre());
-        assertTrue(book.isBorrowed());
     }
 }

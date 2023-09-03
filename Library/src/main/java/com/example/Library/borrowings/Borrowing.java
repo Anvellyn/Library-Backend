@@ -23,12 +23,14 @@ public class Borrowing {
     private Book book;
     @ManyToOne
     private Client client;
-    LocalDate dateOfStart = LocalDate.now();
-    LocalDate dateOfEnd = dateOfStart.plus(2, ChronoUnit.WEEKS);
+    private LocalDate dateOfStart;
+    private LocalDate dateOfEnd;
+    private boolean isReturned;
     public Borrowing(Book book, Client client) {
         this.book = book;
         this.client = client;
         this.dateOfStart = LocalDate.now();
         this.dateOfEnd = dateOfStart.plus(2, ChronoUnit.WEEKS);
+        this.isReturned = false;
     }
 }
